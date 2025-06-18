@@ -18,7 +18,7 @@ class Category(models.Model):
         return self.category_name
 class Blog(models.Model):
     blog_id = models.UUIDField(default=uuid.uuid4,primary_key=True,editable=False)
-    blog_writer = models.ForeignKey(User,on_delete=models.CASCADE,editable=False)
+    blog_writer = models.ForeignKey(User,on_delete=models.CASCADE)
     blog_title = models.CharField(max_length=80)
     blog_body = models.CharField(max_length=1000)
     blog_categories = models.ManyToManyField(Category,related_name='category_blog',blank=True)
@@ -35,7 +35,7 @@ class Blog(models.Model):
         return self.blog_title
 class Review(models.Model):
     review_id = models.UUIDField(default=uuid.uuid4,primary_key=True,editable=False)
-    review_writer = models.ForeignKey(User,on_delete=models.CASCADE,editable=False)
+    review_writer = models.ForeignKey(User,on_delete=models.CASCADE)
     review_body = models.CharField(max_length=250)
     review_blog = models.ForeignKey(Blog,on_delete=models.CASCADE,related_name='review')
     created_at = models.DateTimeField(auto_now_add=True,editable=False)
