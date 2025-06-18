@@ -7,6 +7,13 @@ class Category(models.Model):
     category_name = models.CharField(max_length=100)
     created_at = models.DateTimeField(auto_now_add=True,editable=False)
     updated_at = models.DateTimeField(auto_now=True,editable=False)
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['category_name'],
+                name = 'unique_category'
+            )
+        ]
     def __str__(self):
         return self.category_name
 class Blog(models.Model):
