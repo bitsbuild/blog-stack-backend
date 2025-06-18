@@ -15,5 +15,6 @@ schema_view = get_schema_view(
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('restapi/',include('app.urls')),
+    path('tmpauth/',include('rest_framework.urls')),
     path('',schema_view.with_ui('swagger'),name='schema-swagger-ui'),
 ]
