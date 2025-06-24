@@ -23,7 +23,8 @@ def create_user(request):
     else:
         return Response(
             {
-            "Status":"Account Creation Failed"
+            "Status":"Account Creation Failed",
+            "Error":str(serializer.errors)
             },
             status=status.HTTP_400_BAD_REQUEST,
         )
