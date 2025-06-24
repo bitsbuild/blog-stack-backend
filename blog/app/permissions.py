@@ -4,7 +4,7 @@ class AccessByOwnership(BasePermission):
         if request.method in SAFE_METHODS:
             return True
         else:
-            if request.user == obj.owner:
+            if request.user == obj.blog_writer:
                 return True
             else:
                 return False

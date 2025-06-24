@@ -12,8 +12,8 @@ class Blog(models.Model):
     blog_title = models.CharField(max_length=150)
     blog_body = models.CharField(max_length=7500)
     blog_categories = models.ManyToManyField(Category,related_name='blogs')
-    blog_created = models.DateTimeField(auto_now_add=True,editable=False)
-    blog_updated = models.DateTimeField(auto_now=True,editable=False)
+    created = models.DateTimeField(auto_now_add=True,editable=False)
+    updated = models.DateTimeField(auto_now=True,editable=False)
     def __str__(self):
         return self.blog_title
 class Reviews(models.Model):
@@ -21,8 +21,8 @@ class Reviews(models.Model):
     review_writer = models.ForeignKey(User,on_delete=models.CASCADE)
     review_title = models.CharField(max_length=150)
     review_body = models.CharField(max_length=1500)
-    review_created = models.DateTimeField(auto_now_add=True,editable=False)
-    review_updated = models.DateTimeField(auto_now=True,editable=False)
+    created = models.DateTimeField(auto_now_add=True,editable=False)
+    updated = models.DateTimeField(auto_now=True,editable=False)
     for_blog = models.ForeignKey(Blog,related_name='reviews',on_delete=models.CASCADE)
     def __str__(self):
         return self.review_title
