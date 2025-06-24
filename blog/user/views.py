@@ -4,16 +4,19 @@ from rest_framework.decorators import api_view,permission_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from user.serializers import UserSerializer
+from rest_framework.authtoken.models import Token
 @api_view(['POST'])
 def create_user(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
+        token,collector = Token.objects.get_or_create(user=serializer.instance)
         return Response(
             {
-            "Status":"Account Creation Successful"
+                "Status":"Account Creation Successful",
+                "Token":str(token.key)
             },
-            status=status.HTTP_200_OK,
+            status=status.HTTP_200_OK
         )
     else:
         return Response(
