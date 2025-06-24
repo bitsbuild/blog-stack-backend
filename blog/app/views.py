@@ -1,8 +1,13 @@
 from django.shortcuts import render
 from rest_framework.viewsets import ModelViewSet
+from app.serializers import BlogSerializer,ReviewSerializer,CategorySerializer
+from app.models import Reviews,Category,Blog
 class BlogVS(ModelViewSet):
-    pass
+    queryset = Blog.objects.all()
+    serializer_class = BlogSerializer
 class ReviewVS(ModelViewSet):
-    pass
+    queryset = Reviews.objects.all()
+    serializer_class = ReviewSerializer
 class CategoryVS(ModelViewSet):
-    pass
+    queryset = Category.objects.all()
+    serializer_class = CategorySerializer
