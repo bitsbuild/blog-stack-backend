@@ -1,11 +1,13 @@
 from rest_framework.response import Response
 from rest_framework import status
-from rest_framework.decorators import api_view,permission_classes
+from rest_framework.decorators import api_view,permission_classes,throttle_classes
 from rest_framework.permissions import IsAuthenticated
 from django.contrib.auth.models import User
 from user.serializers import UserSerializer
 from rest_framework.authtoken.models import Token
+from rest_framework.throttling import UserRateThrottle,AnonRateThrottle
 @api_view(['POST'])
+@throttle_classes([AnonRateThrottle])
 def create_user(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
@@ -26,6 +28,7 @@ def create_user(request):
             status=status.HTTP_400_BAD_REQUEST,
         )
 @api_view(['POST'])
+@throttle_classes([UserRateThrottle])
 @permission_classes([IsAuthenticated])
 def delete_user(request):
     try:
