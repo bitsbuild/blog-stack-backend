@@ -13,7 +13,8 @@ INSTALLED_APPS = [
     'rest_framework',
     'user.apps.UserConfig',
     'rest_framework.authtoken',
-    'app'
+    'app',
+    'django_filters'
 ]
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
