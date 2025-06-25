@@ -13,6 +13,9 @@ class BlogSerializer(ModelSerializer):
     class Meta:
         model = Blog
         fields = '__all__'
+    def create(self, validated_data):
+        validated_data['blog_writer'] = self.context['request'].user
+        return super().create(validated_data)
 class CategorySerializer(ModelSerializer):
     class Meta:
         model = Category
