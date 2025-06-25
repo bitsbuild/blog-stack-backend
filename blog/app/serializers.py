@@ -1,4 +1,4 @@
-from rest_framework.serializers import ModelSerializer,SlugField,StringRelatedField
+from rest_framework.serializers import ModelSerializer,SlugRelatedField,StringRelatedField
 from app.models import Category,Blog,Reviews
 class ReviewSerializer(ModelSerializer):
     review_writer = StringRelatedField()
@@ -7,7 +7,7 @@ class ReviewSerializer(ModelSerializer):
         model = Reviews
         fields = '__all__'
 class BlogSerializer(ModelSerializer):
-    blog_categories = StringRelatedField(many=True)
+    blog_categories = SlugRelatedField(many=True)
     reviews = ReviewSerializer(many=True,read_only=True)
     blog_writer = StringRelatedField(read_only=True)
     class Meta:
