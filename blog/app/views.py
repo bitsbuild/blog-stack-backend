@@ -14,7 +14,7 @@ class BlogVS(ModelViewSet):
     throttle_classes = [UserRateThrottle]
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     filterset_fields = ['blog_writer','blog_categories']
-    search_fields = ['blog_writer','blog_title','blog_body']
+    search_fields = ['blog_title','blog_body']
 class ReviewVS(ModelViewSet):
     queryset = Reviews.objects.all()
     serializer_class = ReviewSerializer
@@ -22,7 +22,7 @@ class ReviewVS(ModelViewSet):
     throttle_classes = [UserRateThrottle]
     filter_backends = [DjangoFilterBackend,filters.SearchFilter]
     filterset_fields = ['for_blog','review_writer']
-    search_fields = ['review_writer','review_title','review_body']
+    search_fields = ['review_title','review_body']
 class CategoryVS(ModelViewSet):
     queryset = Category.objects.all()
     serializer_class = CategorySerializer
