@@ -9,6 +9,7 @@ class ReviewSerializer(ModelSerializer):
 class BlogSerializer(ModelSerializer):
     blog_categories = StringRelatedField(read_only=True,many=True)
     reviews = ReviewSerializer(many=True,read_only=True)
+    blog_writer = StringRelatedField(read_only=True)
     class Meta:
         model = Blog
         fields = '__all__'
