@@ -7,7 +7,7 @@ class ReviewSerializer(ModelSerializer):
         model = Reviews
         fields = '__all__'
 class BlogSerializer(ModelSerializer):
-    blog_categories = SlugRelatedField(many=True)
+    blog_categories = SlugRelatedField(many=True,queryset=Category.objects.all(),slug_field='category_name')
     reviews = ReviewSerializer(many=True,read_only=True)
     blog_writer = StringRelatedField(read_only=True)
     class Meta:
