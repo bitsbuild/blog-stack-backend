@@ -27,5 +27,7 @@ class Reviews(models.Model):
     created = models.DateTimeField(auto_now_add=True,editable=False)
     updated = models.DateTimeField(auto_now=True,editable=False)
     for_blog = models.ForeignKey(Blog,related_name='reviews',on_delete=models.CASCADE)
+    class Meta:
+        unique_together = ('review_writer','for_blog')
     def __str__(self):
         return self.review_title
